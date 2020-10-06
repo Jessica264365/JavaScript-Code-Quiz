@@ -57,8 +57,12 @@ function startTimer() {
     timerStart--;
     timer.textContent = "Timer: " + timerStart;
 
-    if (timerStart === 0) {
+    if (
+      timerStart === 0 &&
+      confirm("Out of time! Would you like to try again?") === true
+    ) {
       clearInterval(timerInterval);
+      location.reload("./quiz.html");
     }
   }, 1000);
 }
@@ -96,8 +100,8 @@ function resetBtn() {
     answerBtnEl.removeChild(answerBtnEl.firstChild);
   }
 }
-function selectedAns(e) {
-  let selectedAns = e.target;
+function selectedAns(event) {
+  let selectedAns = event.target;
   let rightAns = selectedAns.dataset.correct;
   if (!rightAns) {
     timerStart = timerStart - 10;
@@ -113,9 +117,11 @@ function selectedAns(e) {
     currentQuestionIndex++;
     setTimeout(() => {
       nextQuestion();
-    }, 1500);
-  } else {
-    alert("game over!");
+    }, 1000);
+  } else if (
+    confirm("Game over! Would you like to record your score?") === true
+  ) {
+    location.replace("./highscore.html");
   }
 }
 function btnClass(element, correct) {
