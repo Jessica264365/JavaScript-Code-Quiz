@@ -1,54 +1,133 @@
-var question = document.getElementById("question");
-var choices = document.getElementById("choices");
-var RightorWrong = document.getElementById("RorW");
-var timer = document.getElementById("timer");
-var startBtn = document.createElement("button");
-var timerStart = parseInt(76);
-var timerInterval;
+let quizDescript = document.getElementById("quizDescipt");
+let startBtn = document.getElementById("startBtn");
+const questionContEl = document.getElementById("ques-container");
+let randomQues;
+let currentQuestionIndex;
+const questionEl = document.getElementById("question");
+const answerBtnEl = document.getElementById("answer-btns");
+let timerStart = parseInt(75);
+let timerInterval;
+let timer = document.getElementById("timer");
+// let button = document.createElement("button");
 
-startBtn.textContent = "Start Quiz";
-document.getElementById("RorW").appendChild(startBtn);
+let questions = [
+  {
+    question: "What is 2+2?",
+    answers: [
+      { text: "4", correct: true },
+      { text: "34", correct: false },
+      { text: "60", correct: false },
+      { text: "15", correct: false },
+    ],
+  },
+  {
+    question: "What is 5+5?",
+    answers: [
+      { text: "10", correct: true },
+      { text: "60", correct: false },
+      { text: "4", correct: false },
+      { text: "15", correct: false },
+    ],
+  },
+  {
+    question: "What is 30+5?",
+    answers: [
+      { text: "24", correct: false },
+      { text: "35", correct: true },
+      { text: "90", correct: false },
+      { text: "7", correct: false },
+    ],
+  },
+  {
+    question: "What is 1+2?",
+    answers: [
+      { text: "3", correct: true },
+      { text: "89", correct: false },
+      { text: "7", correct: false },
+      { text: "15", correct: false },
+    ],
+  },
+];
 
-var ol = document.createElement("ol");
-var liEl1 = document.createElement("li");
-var liEl2 = document.createElement("li");
-var liEl3 = document.createElement("li");
-var liEl4 = document.createElement("li");
-
-// 1. Start button is clicked and the timer starts
+startBtn.addEventListener("click", startQuiz);
 startBtn.addEventListener("click", startTimer);
-startBtn.addEventListener("click");
+
 function startTimer() {
   timerInterval = setInterval(function () {
     timerStart--;
     timer.textContent = "Timer: " + timerStart;
 
-    if (timerInterval === 0) {
+    if (timerStart === 0) {
       clearInterval(timerInterval);
     }
   }, 1000);
 }
 
-// 2. First question is loaded onto the screen
+function startQuiz() {
+  startBtn.classList.add("hide");
+  randomQues = questions.sort(function () {
+    Math.random() - 0.5;
+  });
+  currentQuestionIndex = 0;
+  quizDescript.classList.add("hide");
+  questionContEl.classList.remove("hide");
+  nextQuestion();
+}
 
-//     a. Answer is selected for first question
-//     b. If the answer is correct the timer stays the same. "Right" is displayed to user
-//     c. If the answer is wrong 10 seconds is subtracted from the timer. "Wrong" is displayed
-// 3. Second question is loaded on the screen
-//     a. Answer is selected for first question
-//     b. If the answer is correct the timer stays the same. "Right" is displayed to user
-//     c. If the answer is wrong 10 seconds is subtracted from the timer. "Wrong" is displayed
-// 2. Third question is loaded onto the screen
-//     a. Answer is selected for first question
-//     b. If the answer is correct the timer stays the same. "Right" is displayed to user
-//     c. If the answer is wrong 10 seconds is subtracted from the timer. "Wrong" is displayed
-// 3. Fourth question is loaded on the screen
-//     a. Answer is selected for first question
-//     b. If the answer is correct the timer stays the same. "Right" is displayed to user
-//     c. If the answer is wrong 10 seconds is subtracted from the timer. "Wrong" is displayed
-// 4. If the timer runs out the quiz ends and a "Want to try again?" message is displayed
-//     a. The user is taken back to restart the quiz.
-// 5. If the user finishes they are prompted to record their high score.
-//     a. The user inputs their name and presses submit
-//     b. The user is taken to the highscore.html page
-//     c. The score is listed and saved
+function nextQuestion() {
+  resetBtn();
+  displayQues(randomQues[currentQuestionIndex]);
+}
+function displayQues(question) {
+  questionEl.innerText = question.question;
+  question.answers.forEach(function (answer) {
+    let button = document.createElement("button");
+    button.innerText = answer.text;
+    button.classList.add("btn");
+    if (answer.correct) {
+      button.setAttribute("data-correct", true);
+    }
+    button.addEventListener("click", selectedAns);
+    answerBtnEl.appendChild(button);
+  });
+}
+function resetBtn() {
+  while (answerBtnEl.firstChild) {
+    answerBtnEl.removeChild(answerBtnEl.firstChild);
+  }
+}
+function selectedAns(e) {
+  let selectedAns = e.target;
+  let rightAns = selectedAns.dataset.correct;
+  if (!rightAns) {
+    timerStart = timerStart - 10;
+  }
+
+  console.log(answerBtnEl.children);
+  Array.from(answerBtnEl.children).forEach(function (button) {
+    console.log(button);
+    btnClass(button, button.dataset.correct);
+  });
+
+  if (randomQues.length > currentQuestionIndex + 1) {
+    currentQuestionIndex++;
+    setTimeout(() => {
+      nextQuestion();
+    }, 1500);
+  } else {
+    alert("game over!");
+  }
+}
+function btnClass(element, correct) {
+  clearBtnClass(element);
+  if (correct) {
+    element.classList.add("correct");
+  } else {
+    element.classList.add("wrong");
+  }
+}
+
+function clearBtnClass(element) {
+  element.classList.remove("correct");
+  element.classList.remove("wrong");
+}
