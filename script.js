@@ -8,7 +8,10 @@ const answerBtnEl = document.getElementById("answer-btns");
 let timerStart = parseInt(75);
 let timerInterval;
 let timer = document.getElementById("timer");
-// let button = document.createElement("button");
+let scoreForm = document.getElementById("scoreForm");
+let quizDone = false;
+let submitBtn = document.getElementById("submitBtn");
+let userScore = document.getElementById("userScore");
 
 let questions = [
   {
@@ -53,18 +56,20 @@ startBtn.addEventListener("click", startQuiz);
 startBtn.addEventListener("click", startTimer);
 
 function startTimer() {
-  timerInterval = setInterval(function () {
-    timerStart--;
-    timer.textContent = "Timer: " + timerStart;
+  if (!quizDone) {
+    timerInterval = setInterval(function () {
+      timerStart--;
+      timer.textContent = "Timer: " + timerStart;
 
-    if (
-      timerStart === 0 &&
-      confirm("Out of time! Would you like to try again?") === true
-    ) {
-      clearInterval(timerInterval);
-      location.reload("./quiz.html");
-    }
-  }, 1000);
+      if (
+        timerStart === 0 &&
+        confirm("Out of time! Would you like to try again?") === true
+      ) {
+        clearInterval(timerInterval);
+        location.reload("./quiz.html");
+      }
+    }, 1000);
+  }
 }
 
 function startQuiz() {
@@ -109,7 +114,6 @@ function selectedAns(event) {
 
   console.log(answerBtnEl.children);
   Array.from(answerBtnEl.children).forEach(function (button) {
-    console.log(button);
     btnClass(button, button.dataset.correct);
   });
 
@@ -121,7 +125,14 @@ function selectedAns(event) {
   } else if (
     confirm("Game over! Would you like to record your score?") === true
   ) {
-    location.replace("./highscore.html");
+    scoreForm.classList.remove("hide");
+    questionContEl.classList.add("hide");
+    let highScore = timerStart;
+    console.log(highScore);
+    clearInterval(timerInterval);
+    submitBtn.addEventListener("click", function (event) {
+      event.preventDefault();
+    });
   }
 }
 function btnClass(element, correct) {

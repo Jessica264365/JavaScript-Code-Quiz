@@ -26,6 +26,11 @@
         You have 75 seconds to answer all 5 questions correctly. If you answer a
         question wrong 10 seconds is subtracted from the timer. Good luck!
       </div>
+      <form class="hide" id="scoreForm">
+        <label for="score">Record Your Score!</label>
+        <input type="text" for="recordscore" id="userScore" /><br /><br />
+        <input type="submit" onclick="storeScore()" id="submitBtn" />
+      </form>
       <div id="startBtn">
         <button>Start</button>
       </div>
