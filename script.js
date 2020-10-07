@@ -51,6 +51,15 @@ let questions = [
       { text: "15", correct: false },
     ],
   },
+  {
+    question: "What is 7+10?",
+    answers: [
+      { text: "17", correct: true },
+      { text: "5", correct: false },
+      { text: "7", correct: false },
+      { text: "55", correct: false },
+    ],
+  },
 ];
 
 startBtn.addEventListener("click", startQuiz);
@@ -69,7 +78,7 @@ function startTimer() {
         clearInterval(timerInterval);
         location.reload("./quiz.html");
       }
-    }, 800);
+    }, 1000);
   }
 }
 
@@ -123,20 +132,19 @@ function selectedAns(event) {
     currentQuestionIndex++;
     setTimeout(() => {
       nextQuestion();
-    }, 1000);
+    }, 800);
   } else if (
     confirm("Game over! Would you like to record your score?") === true
   ) {
     scoreForm.classList.remove("hide");
     questionContEl.classList.add("hide");
-    let highScore = timerStart;
 
     clearInterval(timerInterval);
     submitBtn.addEventListener("click", function (event) {
       event.preventDefault();
       let finalScore = {
         user: userScore.value.trim(),
-        score: parseInt(timerStart),
+        score: timerStart,
       };
       console.log(finalScore);
       if (finalScore === "") {
@@ -146,8 +154,8 @@ function selectedAns(event) {
       highScoreEl.classList.remove("hide");
       scoreForm.classList.add("hide");
       let showScores = JSON.parse(localStorage.getItem("finalScore"));
-      highScoreEl.textContent = finalScore.user;
-      highScoreEl.textContent = finalScore.score;
+      highScoreEl.textContent = showScores.user;
+      highScoreEl.textContent = showScores.score;
     });
   }
 }
