@@ -12,6 +12,7 @@ let scoreForm = document.getElementById("scoreForm");
 let quizDone = false;
 let submitBtn = document.getElementById("submitBtn");
 let userScore = document.getElementById("userScore");
+let highScoreEl = document.getElementById("highscores");
 
 let questions = [
   {
@@ -68,7 +69,7 @@ function startTimer() {
         clearInterval(timerInterval);
         location.reload("./quiz.html");
       }
-    }, 1000);
+    }, 800);
   }
 }
 
@@ -80,6 +81,7 @@ function startQuiz() {
   currentQuestionIndex = 0;
   quizDescript.classList.add("hide");
   questionContEl.classList.remove("hide");
+
   nextQuestion();
 }
 
@@ -128,10 +130,24 @@ function selectedAns(event) {
     scoreForm.classList.remove("hide");
     questionContEl.classList.add("hide");
     let highScore = timerStart;
-    console.log(highScore);
+
     clearInterval(timerInterval);
     submitBtn.addEventListener("click", function (event) {
       event.preventDefault();
+      let finalScore = {
+        user: userScore.value.trim(),
+        score: parseInt(timerStart),
+      };
+      console.log(finalScore);
+      if (finalScore === "") {
+        alert("You must enter a name!");
+      }
+      localStorage.setItem("finalScore", JSON.stringify(finalScore));
+      highScoreEl.classList.remove("hide");
+      scoreForm.classList.add("hide");
+      let showScores = JSON.parse(localStorage.getItem("finalScore"));
+      highScoreEl.textContent = finalScore.user;
+      highScoreEl.textContent = finalScore.score;
     });
   }
 }
