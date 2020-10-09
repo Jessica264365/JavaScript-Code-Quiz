@@ -38,6 +38,8 @@ ul.navbar li a:hover {
     float: none;
   }
 }
+
+/* CSS for question container and buttons */
 #container {
   margin: 0 auto;
   width: 500px;
