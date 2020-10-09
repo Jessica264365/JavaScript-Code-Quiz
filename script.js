@@ -1,3 +1,4 @@
+// Variables for Coding Quiz
 let quizDescript = document.getElementById("quizDescipt");
 let startBtn = document.getElementById("startBtn");
 const questionContEl = document.getElementById("ques-container");
@@ -14,7 +15,9 @@ let submitBtn = document.getElementById("submitBtn");
 let userScore = document.getElementById("userScore");
 let highScoreEl = document.getElementById("highscores");
 let highscoreListEl = document.getElementById("scoreList");
+let highScoreLink = document.getElementById("highScoreList");
 
+// Questions for Quiz
 let questions = [
   {
     question: "What is 2+2?",
@@ -63,9 +66,13 @@ let questions = [
   },
 ];
 
+// Event listeners for startBtn
 startBtn.addEventListener("click", startQuiz);
 startBtn.addEventListener("click", startTimer);
 
+// Event listener for Highscores
+
+// Timer is started when startBtn is clicked
 function startTimer() {
   if (!quizDone) {
     timerInterval = setInterval(function () {
@@ -83,8 +90,10 @@ function startTimer() {
   }
 }
 
+// Quiz is started when startBtn is clicked
 function startQuiz() {
   startBtn.classList.add("hide");
+  // Questions are randomly chosen
   randomQues = questions.sort(function () {
     Math.random() - 0.5;
   });
@@ -95,10 +104,12 @@ function startQuiz() {
   nextQuestion();
 }
 
+// The next question is displayed from the current random question index
 function nextQuestion() {
   resetBtn();
   displayQues(randomQues[currentQuestionIndex]);
 }
+
 function displayQues(question) {
   questionEl.innerText = question.question;
   question.answers.forEach(function (answer) {
@@ -172,9 +183,45 @@ function selectedAns(event) {
       showScores.forEach((scoreArray) => {
         highScoreListMaker(scoreArray);
       });
+      let restartQuizBtn = document.createElement("button");
+      highScoreEl.appendChild(restartQuizBtn);
+      restartQuizBtn.textContent = "Restart Quiz";
+      restartQuizBtn.addEventListener("click", function () {
+        location.reload("./quiz.html");
+      });
     });
   }
 }
+
+highScoreLink.addEventListener("click", () => {
+  highScoreEl.classList.remove("hide");
+  startBtn.classList.add("hide");
+  quizDescript.classList.add("hide");
+  questionContEl.classList.add("hide");
+  answerBtnEl.classList.add("hide");
+
+  clearInterval(timerInterval);
+  let scoreArray = localStorage.getItem("finalScore")
+    ? JSON.parse(localStorage.getItem("finalScore"))
+    : [];
+  let showScores = JSON.parse(localStorage.getItem("finalScore"));
+  let highScoreListMaker = function (scoreArray) {
+    let li = document.createElement("li");
+    li.textContent = scoreArray.user + ":  " + scoreArray.score;
+    highscoreListEl.appendChild(li);
+  };
+
+  showScores.forEach((scoreArray) => {
+    highScoreListMaker(scoreArray);
+  });
+  let returnToQuizBtn = document.createElement("button");
+  highScoreEl.appendChild(returnToQuizBtn);
+  returnToQuizBtn.textContent = "Return to Quiz";
+  returnToQuizBtn.addEventListener("click", function () {
+    location.reload("./quiz.html");
+  });
+});
+
 function btnClass(element, correct) {
   clearBtnClass(element);
   if (correct) {
