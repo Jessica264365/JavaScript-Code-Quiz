@@ -13,6 +13,7 @@ let quizDone = false;
 let submitBtn = document.getElementById("submitBtn");
 let userScore = document.getElementById("userScore");
 let highScoreEl = document.getElementById("highscores");
+let highscoreListEl = document.getElementById("scoreList");
 
 let questions = [
   {
@@ -116,6 +117,7 @@ function resetBtn() {
     answerBtnEl.removeChild(answerBtnEl.firstChild);
   }
 }
+
 function selectedAns(event) {
   let selectedAns = event.target;
   let rightAns = selectedAns.dataset.correct;
@@ -138,24 +140,38 @@ function selectedAns(event) {
   ) {
     scoreForm.classList.remove("hide");
     questionContEl.classList.add("hide");
-
     clearInterval(timerInterval);
+
     submitBtn.addEventListener("click", function (event) {
       event.preventDefault();
+      highScoreEl.classList.remove("hide");
+      scoreForm.classList.add("hide");
+
       let finalScore = {
         user: userScore.value.trim(),
         score: timerStart,
       };
-      console.log(finalScore);
+
       if (finalScore === "") {
         alert("You must enter a name!");
       }
-      localStorage.setItem("finalScore", JSON.stringify(finalScore));
-      highScoreEl.classList.remove("hide");
-      scoreForm.classList.add("hide");
+
+      let scoreArray = localStorage.getItem("finalScore")
+        ? JSON.parse(localStorage.getItem("finalScore"))
+        : [];
+      scoreArray.push(finalScore);
+      localStorage.setItem("finalScore", JSON.stringify(scoreArray));
+
       let showScores = JSON.parse(localStorage.getItem("finalScore"));
-      highScoreEl.textContent = showScores.user;
-      highScoreEl.textContent = showScores.score;
+      let highScoreListMaker = function (scoreArray) {
+        let li = document.createElement("li");
+        li.textContent = scoreArray.user + ":  " + scoreArray.score;
+        highscoreListEl.appendChild(li);
+      };
+
+      showScores.forEach((scoreArray) => {
+        highScoreListMaker(scoreArray);
+      });
     });
   }
 }
