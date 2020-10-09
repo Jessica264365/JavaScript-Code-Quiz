@@ -48,21 +48,21 @@ let questions = [
     ],
   },
   {
-    question: "",
+    question: "What does Array.from(); do?",
     answers: [
-      { text: "3", correct: true },
-      { text: "89", correct: false },
-      { text: "7", correct: false },
-      { text: "15", correct: false },
+      { text: "Creates an array from a iterable object", correct: true },
+      { text: "Creates an array from a string", correct: false },
+      { text: "Creates an array from a list of variables", correct: false },
+      { text: "Combines arrays", correct: false },
     ],
   },
   {
-    question: "What is 7+10?",
+    question: "Which company developed JavaScript?",
     answers: [
-      { text: "17", correct: true },
-      { text: "5", correct: false },
-      { text: "7", correct: false },
-      { text: "55", correct: false },
+      { text: "Netscape", correct: true },
+      { text: "TECLA", correct: false },
+      { text: "Digitegy", correct: false },
+      { text: "Computer Usage Company", correct: false },
     ],
   },
 ];
