@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JavaScript Quiz</title>
+    <!-- Local style sheet -->
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <nav id="nav">
+      <!-- Navbar -->
+      <ul class="navbar">
+        <li><a id="highScoreList" class="active">Highscores</a></li>
+        <li id="timer"></li>
+      </ul>
+    </nav>
+    <div id="container">
+      <div id="ques-container" class="hide">
+        <h1 id="question"></h1>
+        <div id="answer-btns" class="buttons"></div>
+      </div>
+      <div id="quizDescipt">
+        <h1>JavaScript Quiz</h1>
+        You have 45 seconds to answer all 5 questions correctly. If you answer a
+        question wrong 10 seconds is subtracted from the timer. Good luck!
+      </div>
+      <form class="hide" id="scoreForm">
+        <label for="score">Enter your name:</label>
+        <input type="text" for="recordscore" id="userScore" /><br /><br />
+        <input type="submit" id="submitBtn" />
+      </form>
+      <div id="highscores" class="hide">
+        <h1>Highscores!</h1>
+        <ul id="scoreList"></ul>
+      </div>
+      <div id="startBtn">
+        <button>Start</button>
+      </div>
+    </div>
+    <script src="./script.js"></script>
+  </body>
+</html>
