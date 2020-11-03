@@ -207,7 +207,6 @@ highScoreLink.addEventListener("click", () => {
   questionContEl.classList.add("hide");
   answerBtnEl.classList.add("hide");
   nav.classList.add("hide");
-
   clearInterval(timerInterval);
   let scoreArray = localStorage.getItem("finalScore")
     ? JSON.parse(localStorage.getItem("finalScore"))

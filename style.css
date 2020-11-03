@@ -62,6 +62,7 @@ ul.navbar li a:hover {
   display: none;
 }
 
+/* CSS for right or wrong answer */
 .correct {
   background-color: green;
 }
