@@ -1,21 +1,21 @@
 # JavaScript Quiz
 
-- View the GitHub [repository](https://github.com/Jessica264365/Random-Password-Generator-HW3)
-- View the live [website](https://jessica264365.github.io/Random-Password-Generator-HW3/)
+- View the GitHub [repository](https://github.com/Jessica264365/JavaScript-Code-Quiz)
+- View the live [website](https://jessica264365.github.io/JavaScript-Code-Quiz/)
 
 ## Table of Contents
 
-- [About the Project](https://github.com/Jessica264365/Random-Password-Generator-HW3#about-the-project)
-  - [Built With](https://github.com/Jessica264365/Random-Password-Generator-HW3#built-with)
+- [About the Project](https://github.com/Jessica264365/JavaScript-Code-Quiz#about-the-project)
+  - [Built With](https://github.com/Jessica264365/JavaScript-Code-Quiz#built-with)
 
-* [Start Your Own](https://github.com/Jessica264365/Random-Password-Generator-HW3#start-your-own)
-  - [Prerequisites](https://github.com/Jessica264365/Random-Password-Generator-HW3#prerequisites)
-  - [Installation](https://github.com/Jessica264365/Random-Password-Generator-HW3#installation)
+* [Start Your Own](https://github.com/Jessica264365/JavaScript-Code-Quiz#start-your-own)
+  - [Prerequisites](https://github.com/Jessica264365/JavaScript-Code-Quiz#prerequisites)
+  - [Installation](https://github.com/Jessica264365/RJavaScript-Code-Quiz#installation)
 
-- [License](https://github.com/Jessica264365/Random-Password-Generator-HW3#license)
-- [Roadmap](https://github.com/Jessica264365/Random-Password-Generator-HW3#roadmap)
-- [Contribute](https://github.com/Jessica264365/Random-Password-Generator-HW3#contribute)
-- [My Contact Information](https://github.com/Jessica264365/Random-Password-Generator-HW3#my-contact-information)
+- [License](https://github.com/Jessica264365/JavaScript-Code-Quiz#license)
+- [Roadmap](https://github.com/Jessica264365/JavaScript-Code-Quiz#roadmap)
+- [Contribute](https://github.com/Jessica264365/JavaScript-Code-Quiz#contribute)
+- [My Contact Information](https://github.com/Jessica264365/JavaScript-Code-Quiz#my-contact-information)
 
 ## About the Project
 
@@ -39,7 +39,7 @@ Be familier with some JavaScript.
 
 1. Clone the repository
 
-   git@github.<span></span>com:Jessica264365/Web-APIs-Code-Quiz-HW4.git
+   git@github.<span></span>com:Jessica264365/JavaScript-Code-Quiz.git
 
 ## License
 
@@ -47,7 +47,7 @@ None
 
 ## Roadmap
 
-This project does not currently have an open issues. Please check the [issues](https://github.com/Jessica264365/Web-APIs-Code-Quiz-HW4/issues) page on GitHub for any updates.
+This project does not currently have an open issues. Please check the [issues](https://github.com/Jessica264365/JavaScript-Code-Quiz/issues) page on GitHub for any updates.
 
 ## Contribute
 
@@ -65,4 +65,4 @@ Email: jwhitman135@outlook.com
 
 GitHub Page: https://github.com/Jessica264365
 
-Link to project: https://github.com/Jessica264365/Web-APIs-Code-Quiz-HW4
+Link to project: https://github.com/Jessica264365/JavaScript-Code-Quiz
