@@ -1,4 +1,5 @@
 # JavaScript Quiz
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 - View the GitHub [repository](https://github.com/Jessica264365/JavaScript-Code-Quiz)
 - View the live [website](https://jessica264365.github.io/JavaScript-Code-Quiz/)
